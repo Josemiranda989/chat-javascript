@@ -4,9 +4,16 @@ const path = require('path');
 const express = require('express');
 const socketio = require('socket.io'); //conexion en tiempo real
 
+const mongoose = require('mongoose');
+
 const app = express();
 const server = http.createServer(app)
 const io = require("socket.io")(server);
+
+/* db conecctions */
+mongoose.connect('mongodb://localhost/chat-database')
+    .then(db => console.log('db is connected'))
+.catch(error => console.log(error))
 
 /* Settings */
 app.set('port', process.env.PORT || 3000)
