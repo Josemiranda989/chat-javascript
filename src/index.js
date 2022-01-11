@@ -1,6 +1,8 @@
 const http = require('http');
 const path = require('path');
 
+require("dotenv").config();
+
 const express = require('express');
 const socketio = require('socket.io'); //conexion en tiempo real
 
@@ -12,12 +14,8 @@ const io = require("socket.io")(server);
 
 /* db conecctions */
 mongoose
-  .connect(process.env.MONGODB_URI, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  })
-  .then((db) => console.log("db is connected"))
+  .connect(process.env.MONGODB_URI)
+  .then((db) => console.log("db is connected to", db.connection.name))
   .catch((error) => console.log(error));
 
 /* Settings */
