@@ -31,5 +31,5 @@ require('./sockets')(io)
 app.use(express.static(path.join(__dirname, 'public')))
 
 /* Starting the server */
-server.listen(3000, () => console.log('listening on port', app.get('port')))
+server.listen(app.get('port'), () => console.log('listening on port', app.get('port')))
 
