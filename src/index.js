@@ -11,9 +11,14 @@ const server = http.createServer(app)
 const io = require("socket.io")(server);
 
 /* db conecctions */
-mongoose.connect('mongodb://localhost/chat-database')
-    .then(db => console.log('db is connected'))
-.catch(error => console.log(error))
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  })
+  .then((db) => console.log("db is connected"))
+  .catch((error) => console.log(error));
 
 /* Settings */
 app.set('port', process.env.PORT || 3000)
