@@ -14,9 +14,13 @@ const io = require("socket.io")(server);
 
 /* db conecctions */
 mongoose
-  .connect(process.env.MONGODB_URI)
-  .then((db) => console.log("db is connected to", db.connection.name))
-  .catch((error) => console.log(error));
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+
+    useUnifiedTopology: true,
+  })
+  .then((db) => console.log("Db connectect to", db.connection.name))
+  .catch((err) => console.log(err));
 
 /* Settings */
 app.set('port', process.env.PORT || 3000)
